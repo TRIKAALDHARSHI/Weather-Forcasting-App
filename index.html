@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="right-container">
+      <div class="navbar">
+        <p>Notifications</p>
+        <p>Places</p>
+        <div class="logo">
+          <img class="settings" src="images\settings.png" alt="" />
+          <img src="images\logo.png" alt="" />
+        </div>
+      </div>
+
+      <div class="whether-status">
+        <div class="date">
+          <img id="img-icon" src="images\clear.png" alt="" />
+          <div>
+            <h2>Today</h2>
+            <p id="date">Thursday, April 5</p>
+          </div>
+        </div>
+        <h2 class="temp">
+          <span id="temp"></span>
+          <sup>o</sup>C
+        </h2>
+        <p class="city"></p>
+      </div>
+
+      <div class="whether-status1">
+        <div class="cont">
+          <div class="con1">
+            <img src="images\humidity.png" alt="" />
+            <div class="con-con">
+              <p>
+                <b id="humid">%</b>
+              </p>
+              <p>Humidity</p>
+            </div>
+          </div>
+          <div class="con1">
+            <img src="images\wind.png" alt="" />
+            <div class="con-con">
+              <p>
+                <b id="wind"> km/h</b>
+              </p>
+              <p>Wind Speed</p>
+            </div>
+          </div>
+        </div>
+        <div class="cont">
+          <div class="con1">
+            <img style="filter: invert();" src="images\sunrise.png" alt="">
+            <div class="con-con">
+              <p><b id="sunrise"></b></p>
+              <p>Sunrise</p>
+            </div>
+          </div>
+          <div class="con1">
+            <img style="filter: invert();" src="images\sunset.png" alt="">
+            <div class="con-con">
+              <p><b id="sunset"></b></p>
+              <p>Sunset</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="left-container">
+      <div class="search">
+        <input type="text" id="cityname" placeholder="Enter city name" spellcheck="false" />
+        <link rel="stylesheet" href="LeftContainer.css">
+        <link rel="stylesheet" href="RightContainer.css">
+        <button id="citysearchbtn">
+          <img src="images\search.png" />
+        </button>
+      </div>
+      <div class="left-main">
+        <p class="head-left">Famous Cities</p>
+        <div class="city-search">
+          <div class="city-pic">
+            <div style="background-image: url('images/mumbai.webp');" class="city-pic-img"></div>
+            <p>Mumbai</p>
+          </div>
+          <div class="city-pic">
+            <div style="background-image: url('images/paris.webp');" class="city-pic-img"></div>
+            <p>Paris</p>
+          </div>
+          <div class="city-pic">
+            <div style="background-image: url('images/USA.jpeg');" class="city-pic-img"></div>
+            <p>New York</p>
+          </div>
+          <div class="city-pic">
+            <div style="background-image: url('images/tokyo.jpg');" class="city-pic-img"></div>
+            <p id="disname">Tokyo</p>
+          </div>
+          <div class="add-city">
+            <p>+</p>
+            <p>Add city</p>
+          </div>
+        </div>
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="script.js"></script>
+<script>
+  async function getWhether() {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=` + "mumbai" + "&appid=c022df1170e7135160c2c3c77a189a61")
+    const response1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=` + "poland" + "&appid=c022df1170e7135160c2c3c77a189a61")
+    const response2 = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=` + "london" + "&appid=c022df1170e7135160c2c3c77a189a61")
+    const response3 = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=` + "germany" + "&appid=c022df1170e7135160c2c3c77a189a61")
+    const response4 = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=` + "brazil" + "&appid=c022df1170e7135160c2c3c77a189a61")
+    let data = await response.json()
+    let data1 = await response1.json()
+    let data2 = await response2.json()
+    let data3 = await response3.json()
+    let data4 = await response4.json()
+    let yValues = [data.main.temp, data1.main.temp, data2.main.temp, data3.main.temp, data4.main.temp]
+    const xValues = ['mumbai', 'poland', 'london', 'germany', 'brazil'];
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: { display: false },
+        scales: {
+          yAxes: [{ ticks: { min: -20, max: 60 } }],
+        }
+      }
+    });
+  }
+  getWhether()
+</script>
+
+</html>

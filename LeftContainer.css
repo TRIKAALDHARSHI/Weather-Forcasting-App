@@ -1,0 +1,124 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.left-container {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: #edfffa;
+}
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 90%;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0 0 3px 0 rgb(165, 165, 165);
+  margin-top: 30px;
+}
+.search input {
+  outline: none;
+  border: none;
+  font-size: 15px;
+  padding: 0 10px;
+  width: 90%;
+}
+.search button {
+  background: none;
+  border: none;
+}
+.search button img {
+  width: 18px;
+}
+.head-left {
+  margin-top: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+  width: 90%;
+  font-size: 25px;
+}
+.city-search {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 20px;
+}
+.city-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.city-pic p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.city-pic-img {
+  width: 150px;
+  height: 190px;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 7px;
+}
+.add-city {
+  width: 150px;
+  height: 190px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+#myChart {
+  width: 100%;
+  max-width: 700px;
+  max-height: 300px;
+  margin-top: 25px;
+}
+.left-main {
+  width: 90%;
+}
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  .left-container {
+    width: 100%;
+  }
+  .city-pic-img {
+    width: 100px;
+    height: 140px;
+  }
+  .add-city {
+    width: 100px;
+    height: 140px;
+    margin-right: 10px;
+  }
+  .city-search {
+    width: 100%;
+    grid-template-columns: 1fr 1f;
+    justify-items: center;
+    grid-row-gap: 10px;
+  }
+  #myChart {
+    max-width: 300px;
+    max-height: 400px;
+  }
+  .head-left {
+    margin-top: 20px;
+    margin-left: 7px;
+    font-size: 20px;
+  }
+}
